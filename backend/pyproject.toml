@@ -1,0 +1,50 @@
+[project]
+name = "counter-backend"
+version = "0.1.0"
+description = "Simple counter API used to practice Dockerfiles and CI/CD"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.116.0",
+    "psycopg[binary,pool]>=3.2.9",
+    "pydantic-settings>=2.10.0",
+    "uvicorn>=0.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pysonar>=1.10.0.5888",
+    "pytest>=8.4.0",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.12.0",
+    "ty>=0.0.98",
+]
+
+[tool.uv]
+# The application is run from the source tree (``app/``), so it does not need
+# to be installed into the virtual environment as a package.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["app"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.ty.environment]
+python-version = "3.13"
+
+[tool.ty.src]
+include = ["app", "tests"]
