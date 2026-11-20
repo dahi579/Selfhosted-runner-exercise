@@ -1,0 +1,26 @@
+name: Python CI
+
+on: [push]
+
+jobs:
+  python-checks:
+    name: ${{ matrix.name }}
+    runs-on: self-hosted
+    container:
+      image: ghcr.io/astral-sh/uv:python3.13-bookworm
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Ruff
+            cmd: uv run ruff check .
+          - name: Ruff Format
+            cmd: uv run ruff format --check .
+          - name: Ty
+            cmd: uv run ty check
+          - name: Pytest
+            cmd: uv run pytest
+    steps:
+      - uses: actions/checkout@v4
+      - run: uv sync
+      - run: ${{ matrix.cmd }}
