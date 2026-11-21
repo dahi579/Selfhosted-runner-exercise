@@ -1,40 +1,12 @@
-# Python
 __pycache__/
 *.py[cod]
 .venv/
 .pytest_cache/
 .ruff_cache/
-.mypy_cache/
-actions-runner/
-
-# Node
-node_modules/
-dist/
-.vite/
-
-# CI caches
-.cache/
-.npm/
-.sonar/
-
-# Test and coverage reports
 .coverage
-coverage.xml
-pytest-report.xml
 htmlcov/
-
-# Sonar scanner working directory
-.scannerwork/
-
-# Environment files
-.env
-.env.*
-!.env.example
-
-# Editors / OS
-.DS_Store
+dist/
 .idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-*.swp
+.vscode/
+.hypothesis/
+actions-runner/
